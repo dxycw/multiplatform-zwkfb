@@ -33,24 +33,37 @@ dependencies {
     // 如果使用 Windows Jetpack Compose，请添加以下依赖项
     implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-jvm:0.0.1")
     
-    //其他平台暂定...
+    // 以下平台可以用，但目前不推荐使用
+    
+    // 如果使用 IOS Jetpack Compose，请添加以下依赖项
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-iosx64:0.0.1")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-iosarm64:0.0.1")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-iossimulatorarm64:0.0.1")
+    
+    // 如果使用 Web Jetpack Compose，请添加以下依赖项
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-js:0.0.1")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-wasm-js:0.0.1")
     
 }
 ```
 
-3、使用的平台：
+3、目前可以使用的平台：
 
-| 平台          | 是否可用     |
-| ------------- |----------|
-| Multiplatform | ✅️       |
-| Android       | ✅️       |
-| Windows       | ✅️      |
-| IOS           | ❌️       |
-| MacOS         | ❌️       |
-| Web           | ❌️       |
+| 平台            | 是否可用 |
+|---------------|------|
+| Multiplatform | ✅️   |
+| Android       | ✅️   |
+| Windows       | ✅️   |
+| IOS           | ❌️   |
+| MacOS         | ❌️   |
+| Web           | ❌️   |
+
+4、使用的依赖库：
+* 本项目[使用的依赖库](%E4%BD%BF%E7%94%A8%E7%9A%84%E4%BE%9D%E8%B5%96%E5%BA%93.md)；
 
 # 更新内容
 
 ## 0.0.1
 
 * 创建项目，发布第一个版本；
+* 完善项目文档，添加使用方法、平台支持、依赖库等信息；
