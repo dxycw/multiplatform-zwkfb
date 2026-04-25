@@ -37,7 +37,6 @@ kotlin {
     }
 
     listOf(
-        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
@@ -53,12 +52,15 @@ kotlin {
                 implementation(libs.kotlin.stdlib)
                 // Add KMP dependencies here
 
-                api("org.jetbrains.compose.runtime:runtime:1.10.3")
-                api("org.jetbrains.compose.foundation:foundation:1.10.3")
-                api("org.jetbrains.compose.material3:material3:1.10.0-alpha05")
-                api("org.jetbrains.compose.ui:ui:1.10.3")
-                api("org.jetbrains.compose.components:components-resources:1.10.3")
-                api("org.jetbrains.compose.ui:ui-tooling-preview:1.10.3")
+                // 0.0.2
+                api("org.jetbrains.compose.runtime:runtime:1.11.0-beta03")
+                api("org.jetbrains.compose.foundation:foundation:1.11.0-beta03")
+                api("org.jetbrains.compose.material3:material3:1.11.0-alpha07")
+                api("org.jetbrains.compose.ui:ui:1.11.0-beta03")
+                api("org.jetbrains.compose.ui:ui-tooling-preview:1.11.0-beta03")
+                api("org.jetbrains.compose.components:components-resources:1.11.0-beta03")
+
+                // 0.0.1
                 api("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.10.0")
                 api("org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose:2.10.0")
 
@@ -72,9 +74,7 @@ kotlin {
         }
 
         androidMain {
-            dependencies {
-
-            }
+            dependencies {}
         }
 
         getByName("androidDeviceTest") {
@@ -85,10 +85,15 @@ kotlin {
             }
         }
 
-        iosMain {
+        jvmMain {
             dependencies {
-
+                implementation(compose.desktop.currentOs)
+                implementation(libs.kotlinx.coroutinesSwing)
             }
+        }
+
+        iosMain {
+            dependencies {}
         }
     }
 

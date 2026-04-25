@@ -1,5 +1,4 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -18,7 +17,6 @@ kotlin {
     }
 
     listOf(
-        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
@@ -35,7 +33,7 @@ kotlin {
 
     jvm()
 
-    @OptIn(ExperimentalWasmDsl::class)
+    @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
     wasmJs {
         browser()
         binaries.executable()
@@ -57,6 +55,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
             implementation(projects.zwkfb)
+
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -65,6 +64,10 @@ kotlin {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
         }
+        iosMain.dependencies {}
+        jsMain.dependencies {}
+        wasmJsMain.dependencies {}
+        webMain.dependencies {}
     }
 }
 
@@ -117,6 +120,5 @@ compose.desktop {
             packageName = "com.zwkfb.multiplatform"
             packageVersion = "1.0.0"
         }
-
     }
 }
