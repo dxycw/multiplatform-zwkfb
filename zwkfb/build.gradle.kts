@@ -60,9 +60,11 @@ kotlin {
                 api("org.jetbrains.compose.ui:ui-tooling-preview:1.11.0-beta03")
                 api("org.jetbrains.compose.components:components-resources:1.11.0-beta03")
 
-                // 0.0.1
-                api("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.10.0")
-                api("org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose:2.10.0")
+                // 0.0.3
+                api("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.11.0-alpha03")
+                api("org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose:2.11.0-alpha03")
+                api("org.jetbrains.compose.material:material-icons-extended:1.7.3")
+                api("org.jetbrains.androidx.navigation:navigation-compose:2.9.2")
 
             }
         }
@@ -74,7 +76,10 @@ kotlin {
         }
 
         androidMain {
-            dependencies {}
+            dependencies {
+                // 0.0.3
+                api("androidx.activity:activity-compose:1.13.0")
+            }
         }
 
         getByName("androidDeviceTest") {

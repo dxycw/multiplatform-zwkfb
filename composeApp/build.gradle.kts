@@ -72,6 +72,7 @@ kotlin {
 }
 
 android {
+
     signingConfigs {
         create("release") {
             storeFile = file("../key.jks")
@@ -90,21 +91,34 @@ android {
         versionCode = 1
         versionName = "0.0.1"
     }
+
+    splits {
+        abi {
+            isEnable = true // 是否开启ABI分割
+            reset()  // 清空默认的abi配置
+            include("armeabi-v7a", "arm64-v8a", "x86", "x86_64") // 指定要支持的ABI
+            isUniversalApk = false     // 是否生成通用apk
+        }
+    }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
             signingConfig = signingConfigs.getByName("release")
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
 }
 
 dependencies {
@@ -116,9 +130,15 @@ compose.desktop {
         mainClass = "com.zwkfb.multiplatform.MainKt"
 
         nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.zwkfb.multiplatform"
+            targetFormats(
+                TargetFormat.Dmg,
+                TargetFormat.Msi,
+                TargetFormat.Deb,
+                TargetFormat.Exe
+            )
+            packageName = "灵阁"
             packageVersion = "1.0.0"
+
         }
     }
 }
