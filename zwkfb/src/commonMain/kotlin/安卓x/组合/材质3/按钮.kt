@@ -955,6 +955,7 @@ object 按钮默认值 { // ButtonDefaults
         )
 
     /** [轮廓按钮] 使用的默认 [BorderStroke]。 */
+    @Suppress("DEPRECATION")
     val 轮廓按钮边框: BorderStroke
         @Composable
         @Deprecated(

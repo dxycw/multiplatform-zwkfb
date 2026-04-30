@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidKotlinMultiplatformLibrary)
@@ -16,24 +19,15 @@ kotlin {
         compileSdk = 36
         minSdk = 24
 
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
+
         withHostTestBuilder {}
 
         withDeviceTestBuilder { sourceSetTreeName = "test" }.configure {
             instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
-    }
-
-    js {
-        browser()
-        binaries.executable()
-    }
-
-    jvm()
-
-    @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
-    wasmJs {
-        browser()
-        binaries.executable()
     }
 
     listOf(
@@ -46,11 +40,30 @@ kotlin {
         }
     }
 
+    js {
+        browser()
+        binaries.executable()
+    }
+
+    jvm {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
+    }
+
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        browser()
+        binaries.executable()
+    }
+
     sourceSets {
         commonMain {
             dependencies {
-                implementation(libs.kotlin.stdlib)
-                // Add KMP dependencies here
+                implementation("org.jetbrains.kotlin:kotlin-stdlib:2.3.20")
+                // 在此处添加 KMP 依赖项
+
+//                api("org.jetbrains.compose.ui:ui-graphics:1.11.0-beta03")
 
                 // 0.0.2
                 api("org.jetbrains.compose.runtime:runtime:1.11.0-beta03")
@@ -79,6 +92,11 @@ kotlin {
             dependencies {
                 // 0.0.3
                 api("androidx.activity:activity-compose:1.13.0")
+
+                // 本库的预览界面依赖库，
+                implementation("org.jetbrains.compose.ui:ui-tooling:1.11.0-beta03")
+                implementation("androidx.customview:customview-poolingcontainer:1.0.0")
+                implementation("androidx.emoji2:emoji2:1.5.0")
             }
         }
 
@@ -90,16 +108,28 @@ kotlin {
             }
         }
 
-        jvmMain {
+        jvmMain{
             dependencies {
                 implementation(compose.desktop.currentOs)
-                implementation(libs.kotlinx.coroutinesSwing)
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.10.2")
             }
         }
 
         iosMain {
+            dependencies {
+
+            }
+        }
+        jsMain {
             dependencies {}
         }
+        wasmJsMain {
+            dependencies {}
+        }
+        webMain {
+            dependencies {}
+        }
+
     }
 
 }

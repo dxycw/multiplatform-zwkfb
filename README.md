@@ -44,23 +44,23 @@ dependencyResolutionManagement {
 dependencies {
     
     // 如果使用多平台Jetpack Compose Multiplatform，请添加以下依赖项
-    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb:0.0.3")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb:0.0.4")
     
     // 如果使用 Android Jetpack Compose，请添加以下依赖项
-    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-android:0.0.3")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-android:0.0.4")
     
     // 如果使用 Windows Jetpack Compose，请添加以下依赖项
-    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-jvm:0.0.3")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-jvm:0.0.4")
     
     // 以下平台可以用，但目前不推荐使用
     
     // 如果使用 IOS Jetpack Compose，请添加以下依赖项
-    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-iosarm64:0.0.3")
-    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-iossimulatorarm64:0.0.3")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-iosarm64:0.0.4")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-iossimulatorarm64:0.0.4")
     
     // 如果使用 Web Jetpack Compose，请添加以下依赖项
-    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-js:0.0.3")
-    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-wasm-js:0.0.3")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-js:0.0.4")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-wasm-js:0.0.4")
     
 }
 ```
@@ -87,6 +87,9 @@ dependencies {
 
 > [!CAUTION] 
 >
+>  * 项目>=0.0.4版本：
+>     从本版本开始 Android平台 和 Desktop平台 的 jvmTarget 修改为 JVM_11；
+> 
 >  * 项目>=0.0.2版本：
 >     因为 org.jetbrains.compose 的 [1.11.0-alpha02](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.11.0-alpha02) 版本以后去掉了“x86_64”平台，所以本项目也去掉 了“x86_64”平台的依赖项，所以在项目中使用时去掉“x86_64”平台的依赖；
 >
@@ -102,6 +105,16 @@ dependencies {
 
 
 # 更新内容
+
+## 0.0.4
+
+* 优化 项目文档，完善使用方法、平台支持、依赖库等信息；
+* 添加 Multiplatform平台的 “水平分隔线()”、“垂直分隔线()”、“分隔线()” 、三个“布局()”、“多重测量布局()”、“脚手架()”、四个“表面()”、三个“图像()” 函数组件；
+* 添加 Multiplatform平台的 “本地绝对色调阴影” 属性函数；
+* 添加 Multiplatform平台的 七个“动画可见性()” 函数；
+* 添加 Multiplatform平台的 “动画可见性范围” 接口类；
+* 添加 Multiplatform平台的 “分隔线默认值”、“脚手架默认值”、“悬浮位置”、“进入退出状态” 对象类；
+* 修改 Android平台 和 Desktop平台的 jvmTarget 为 JVM_11；
 
 ## 0.0.3
 

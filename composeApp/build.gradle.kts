@@ -1,4 +1,5 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -10,6 +11,7 @@ plugins {
 }
 
 kotlin {
+
     androidTarget {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
@@ -33,7 +35,7 @@ kotlin {
 
     jvm()
 
-    @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
+    @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         browser()
         binaries.executable()
@@ -55,7 +57,6 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
             implementation(projects.zwkfb)
-
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -131,14 +132,11 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(
-                TargetFormat.Dmg,
-                TargetFormat.Msi,
-                TargetFormat.Deb,
-                TargetFormat.Exe
+                TargetFormat.Dmg, TargetFormat.Msi,
+                TargetFormat.Deb, TargetFormat.Exe
             )
             packageName = "灵阁"
             packageVersion = "1.0.0"
-
         }
     }
 }

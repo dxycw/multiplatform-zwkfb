@@ -40,6 +40,7 @@ import androidx.compose.ui.layout.VerticalAlignmentLine
  * @see 行
  * @see [androidx.compose.foundation.lazy.LazyColumn]
  */
+@Suppress("ComposableNaming")
 @Composable
 inline fun 列(
     修饰符: Modifier = Modifier,

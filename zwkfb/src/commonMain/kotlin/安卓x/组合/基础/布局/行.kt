@@ -44,6 +44,7 @@ import androidx.compose.ui.layout.Measured
  * @see 列
  * @see [androidx.compose.foundation.lazy.LazyRow]
  */
+@Suppress("ComposableNaming")
 @Composable
 inline fun 行(
     修饰符: Modifier = Modifier,
@@ -65,14 +66,7 @@ inline fun 行(
 @Immutable
 interface 行范围 {
 
-    /**
-     * 根据该元素相对于 [行] 中其他具有权重兄弟元素的 [权重] 比例来设置其宽度。父布局会在测量完无权重子元素后，
-     * 将剩余的水平空间按照此权重进行分配。当 [填充] 为 true 时，该元素将被强制占据分配给它的全部宽度；否则，
-     * 该元素允许小于分配的宽度——这将导致 [行] 整体变小，因为未使用的已分配宽度不会被重新分配给其他兄弟元素。
-     *
-     * @param 权重 赋予该元素的宽度比例，相对于所有具有权重的兄弟元素的总权重而言。必须为正值。
-     * @param 填充 当为 `true` 时，该元素将占据所分配的全部宽度。
-     */
+
     @Stable
     fun Modifier.权重(
         @FloatRange(from = 0.0, fromInclusive = false) 权重: Float,
