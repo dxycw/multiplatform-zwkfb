@@ -44,23 +44,23 @@ dependencyResolutionManagement {
 dependencies {
     
     // 如果使用多平台Jetpack Compose Multiplatform，请添加以下依赖项
-    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb:0.0.4")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb:0.0.5")
     
     // 如果使用 Android Jetpack Compose，请添加以下依赖项
-    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-android:0.0.4")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-android:0.0.5")
     
     // 如果使用 Windows Jetpack Compose，请添加以下依赖项
-    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-jvm:0.0.4")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-jvm:0.0.5")
     
     // 以下平台可以用，但目前不推荐使用
     
     // 如果使用 IOS Jetpack Compose，请添加以下依赖项
-    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-iosarm64:0.0.4")
-    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-iossimulatorarm64:0.0.4")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-iosarm64:0.0.5")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-iossimulatorarm64:0.0.5")
     
     // 如果使用 Web Jetpack Compose，请添加以下依赖项
-    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-js:0.0.4")
-    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-wasm-js:0.0.4")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-js:0.0.5")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-wasm-js:0.0.5")
     
 }
 ```
@@ -105,6 +105,15 @@ dependencies {
 
 
 # 更新内容
+
+## 0.0.5
+
+* 添加 Multiplatform平台的 “徽章盒子()”、“徽章()”、两个“图标按钮()”、两个“图标切换按钮()”、两个“填充图标按钮()”、两个“填充图标切换按钮()”、两个“填充色调图标按钮()”、两个“填充色调图标切换按钮()”、两个“轮廓图标按钮()”、两个“轮廓图标切换按钮()”、四个“图标()” 函数组件；
+* 添加 Multiplatform平台的 “徽章默认值”、“修饰符” 对象类；
+* 添加 Multiplatform平台的 “组合修饰符”、“图标按钮颜色集”、“图标切换按钮颜色集”、“图标按钮形状集”、“图标切换按钮形状集” 函数类；
+* 添加 Android平台的 两个“安卓视图()” 函数；
+* 添加 Android平台的 “无操作更新” 属性函数；
+* 添加 Multiplatform平台的 org.jetbrains.compose.ui:ui-graphics 依赖库版本为 1.11.0-beta03；
 
 ## 0.0.4
 

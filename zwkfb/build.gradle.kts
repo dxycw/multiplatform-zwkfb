@@ -63,17 +63,14 @@ kotlin {
                 implementation("org.jetbrains.kotlin:kotlin-stdlib:2.3.20")
                 // 在此处添加 KMP 依赖项
 
-//                api("org.jetbrains.compose.ui:ui-graphics:1.11.0-beta03")
-
-                // 0.0.2
                 api("org.jetbrains.compose.runtime:runtime:1.11.0-beta03")
                 api("org.jetbrains.compose.foundation:foundation:1.11.0-beta03")
                 api("org.jetbrains.compose.material3:material3:1.11.0-alpha07")
                 api("org.jetbrains.compose.ui:ui:1.11.0-beta03")
                 api("org.jetbrains.compose.ui:ui-tooling-preview:1.11.0-beta03")
+                api("org.jetbrains.compose.ui:ui-graphics:1.11.0-beta03")
                 api("org.jetbrains.compose.components:components-resources:1.11.0-beta03")
 
-                // 0.0.3
                 api("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.11.0-alpha03")
                 api("org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose:2.11.0-alpha03")
                 api("org.jetbrains.compose.material:material-icons-extended:1.7.3")
@@ -90,7 +87,6 @@ kotlin {
 
         androidMain {
             dependencies {
-                // 0.0.3
                 api("androidx.activity:activity-compose:1.13.0")
 
                 // 本库的预览界面依赖库，

@@ -4,16 +4,14 @@ import android.app.Activity
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.LocalActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.icons.Icons
@@ -28,9 +26,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.zwkfb.multiplatform.ui.theme.AppTheme
 import kotlinx.coroutines.launch
-import 安卓x.组合.基础.布局.间隔器
 import 安卓x.组合.材质3.按钮
 import 安卓x.组合.材质3.文本
+import 安卓x.组合.界面.视图互操作.安卓视图
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,52 +81,59 @@ fun Home(上下文 : Activity? = LocalActivity.current) {
                 ) { 文本(文本 = "显示") }
             },
         ) { 内边距 ->
-            Column{
-                SelectionContainer {
-                    Column(
-                        modifier = Modifier.padding(内边距)
+            SelectionContainer {
+                Column(
+                    modifier = Modifier.padding(内边距)
 //                        .verticalScroll(rememberScrollState())
-                    ) {
+                ) {
 //                    ClickToLoadLinear()
 
-                        按钮(单击回调 = { 显示日期选择器 = !显示日期选择器 }) {
-                            文本(文本 = "显示")
-                        }
-
-                        IconButton(onClick = {}){
-                            Icon(
-                                imageVector = Icons.Filled.ArrowDropDown,
-                                contentDescription = null
-                            )
-                        }
-                        var 状态2 by remember { mutableStateOf(false) }
-                        RadioButton(
-                            selected = 状态2,
-                            onClick = { 状态2 = !状态2 }
-                        )
-
-                        var 状态1 by remember { mutableStateOf(false) }
-                        Checkbox(
-                            checked = 状态1,
-                            onCheckedChange = { 状态1 = it }
-                        )
-
-                        var 状态 by remember { mutableStateOf(ToggleableState.Indeterminate) }
-                        TriStateCheckbox(
-                            state = 状态,
-                            onClick = {
-                                if (状态 == ToggleableState.Off) {
-                                    状态 = ToggleableState.On
-                                } else if (状态 == ToggleableState.On) {
-                                    状态 = ToggleableState.Indeterminate
-                                } else {
-                                    状态 = ToggleableState.Off
-                                }
-                            }
-                        )
-
+                    按钮(单击回调 = { 显示日期选择器 = !显示日期选择器 }) {
+                        文本(文本 = "显示")
                     }
+
+                    IconButton(onClick = {}){
+                        Icon(
+                            imageVector = Icons.Filled.ArrowDropDown,
+                            contentDescription = null
+                        )
+                    }
+                    var 状态2 by remember { mutableStateOf(false) }
+                    RadioButton(
+                        selected = 状态2,
+                        onClick = { 状态2 = !状态2 }
+                    )
+
+                    var 状态1 by remember { mutableStateOf(false) }
+                    Checkbox(
+                        checked = 状态1,
+                        onCheckedChange = { 状态1 = it }
+                    )
+
+                    var 状态 by remember { mutableStateOf(ToggleableState.Indeterminate) }
+                    TriStateCheckbox(
+                        state = 状态,
+                        onClick = {
+                            if (状态 == ToggleableState.Off) {
+                                状态 = ToggleableState.On
+                            } else if (状态 == ToggleableState.On) {
+                                状态 = ToggleableState.Indeterminate
+                            } else {
+                                状态 = ToggleableState.Off
+                            }
+                        }
+                    )
+
+                    安卓视图(
+                        工厂 = {
+                            TextView(it).apply {
+                                text = "Hello World"
+                            }
+                        }
+                    )
+
                 }
+
             }
 
             if (显示日期选择器) {
@@ -150,6 +155,7 @@ fun Home(上下文 : Activity? = LocalActivity.current) {
                 }
 
             }
+
 
         }
     }

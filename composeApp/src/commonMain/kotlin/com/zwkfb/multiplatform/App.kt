@@ -1,8 +1,10 @@
 package com.zwkfb.multiplatform
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonColors
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.*
@@ -12,12 +14,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import compose.multiplatform.zwkfb.Greeting
-import org.jetbrains.compose.resources.imageResource
 import org.jetbrains.compose.resources.painterResource
 import zwkfbmultiplatform.composeapp.generated.resources.Res
 import zwkfbmultiplatform.composeapp.generated.resources.compose_multiplatform
 import 安卓x.组合.动画.动画可见性
+import 安卓x.组合.基础.图像
 import 安卓x.组合.基础.布局.列
+
 import 安卓x.组合.材质3.按钮
 import 安卓x.组合.材质3.文本
 import 安卓x.组合.材质3.水平分隔线
@@ -33,16 +36,33 @@ fun App() {
                 TopAppBar(
                     title = { 文本("灵阁") },
                     navigationIcon = {
-                        Image(
-                            painter = painterResource(Res.drawable.compose_multiplatform),
-                            contentDescription = null,
-                            modifier = Modifier.size(40.dp)
-                        )
+                        IconButton(
+                            onClick = {
+
+                            },
+                            colors = IconButtonColors(
+                                containerColor = Color.White,
+                                contentColor = Color.Unspecified,
+                                disabledContainerColor = Color.Transparent,
+                                disabledContentColor = Color.Unspecified
+                            )
+                        ){
+                            Icon(
+                                painter = painterResource(Res.drawable.compose_multiplatform),
+                                contentDescription = null,
+                                modifier = Modifier.size(40.dp),
+                                tint = Color.Unspecified
+                            )
+                        }
+
+//                        图像(
+//                            绘制器 = painterResource(Res.drawable.compose_multiplatform),
+//                            内容描述 = null,
+//                            修饰符 = Modifier.size(40.dp)
+//                        )
                     },
                     actions = {
-                        按钮(单击回调 = {  }) {
-                            文本("Click me!")
-                        }
+                        按钮(单击回调 = {  }) { 文本("Click me!") }
                     }
                 )
             }
@@ -54,9 +74,7 @@ fun App() {
                     .safeContentPadding().fillMaxSize(),
                 水平对齐 = Alignment.CenterHorizontally,
             ) {
-                按钮(
-                    单击回调 = { showContent = !showContent }
-                ) { 文本("Click me!") }
+                按钮(单击回调 = { showContent = !showContent }) { 文本("Click me!") }
                 水平分隔线()
                 文本("Click me!")
                 动画可见性(showContent) {
@@ -65,16 +83,14 @@ fun App() {
                         修饰符 = Modifier.fillMaxWidth(),
                         水平对齐 = Alignment.CenterHorizontally,
                     ) {
-                        Image(
-                            painter = painterResource(Res.drawable.compose_multiplatform),
-                            contentDescription = null,
-                            modifier = Modifier.size(200.dp)
+                        图像(
+                            绘制器 = painterResource(Res.drawable.compose_multiplatform),
+                            内容描述 = null,
+                            修饰符 = Modifier.size(200.dp)
                         )
-
                         文本("Compose: $greeting")
                     }
                 }
-
             }
         }
 
