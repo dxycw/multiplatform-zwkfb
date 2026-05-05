@@ -1,6 +1,10 @@
+import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -74,6 +78,7 @@ kotlin {
 
 android {
 
+    // 签名配置
     signingConfigs {
         create("release") {
             storeFile = file("../key.jks")
@@ -82,6 +87,7 @@ android {
             keyPassword = "12345678"
         }
     }
+
     namespace = "com.zwkfb.multiplatform"
     compileSdk = 36
 
@@ -93,6 +99,7 @@ android {
         versionName = "0.0.1"
     }
 
+    // ABI分割
     splits {
         abi {
             isEnable = true // 是否开启ABI分割
@@ -102,16 +109,34 @@ android {
         }
     }
 
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+    // 修改输出文件名
+    applicationVariants.all {
+        outputs.all {
+            val output = this as BaseVariantOutputImpl
+            // 获取当前 APK 对应的 ABI（架构）
+            val abi = output.filters.find { it.filterType == "ABI" }?.identifier ?: "universal"
+
+            // 构建时间
+            val timeStamp = SimpleDateFormat("yyyyMMdd_HHmm", Locale.getDefault()).format(Date())
+
+            output.outputFileName = "中文开发包-${versionName}-${abi}-${timeStamp}.apk" // -${buildType.name}
         }
     }
 
+    // 混淆配置
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+//            isMinifyEnabled = false
+
+            isMinifyEnabled = true // 是否混淆
+            isShrinkResources = true // 是否压缩资源
             signingConfig = signingConfigs.getByName("release")
+        }
+    }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
 
@@ -132,8 +157,11 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(
-                TargetFormat.Dmg, TargetFormat.Msi,
-                TargetFormat.Deb, TargetFormat.Exe
+                TargetFormat.Dmg,      // macOS
+                TargetFormat.Msi,      // Windows
+                TargetFormat.Exe,      // Windows 可执行文件
+                TargetFormat.Deb,      // Linux Debian
+                TargetFormat.Rpm       // Linux RedHat
             )
             packageName = "灵阁"
             packageVersion = "1.0.0"

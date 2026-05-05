@@ -26,8 +26,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.zwkfb.multiplatform.ui.theme.AppTheme
 import kotlinx.coroutines.launch
+import 安卓x.组合.基础.布局.列
+import 安卓x.组合.基础.文本.选择.选择容器
+import 安卓x.组合.材质3.图标
+import 安卓x.组合.材质3.图标按钮
 import 安卓x.组合.材质3.按钮
 import 安卓x.组合.材质3.文本
+import 安卓x.组合.材质3.脚手架
 import 安卓x.组合.界面.视图互操作.安卓视图
 
 class MainActivity : ComponentActivity() {
@@ -52,10 +57,10 @@ fun Home(上下文 : Activity? = LocalActivity.current) {
         val 状态 = remember { SnackbarHostState() }
         val 范围 = rememberCoroutineScope()
         var 显示日期选择器 by remember { mutableStateOf(false) }
-        Scaffold(
-            modifier = Modifier.fillMaxSize(),
-            snackbarHost = { SnackbarHost(状态) },
-            floatingActionButton = {
+        脚手架(
+            修饰符 = Modifier.fillMaxSize(),
+            提示条主机 = { SnackbarHost(状态) },
+            悬浮操作按钮 = {
                 ExtendedFloatingActionButton(
                     onClick = {
                         范围.launch {
@@ -81,9 +86,9 @@ fun Home(上下文 : Activity? = LocalActivity.current) {
                 ) { 文本(文本 = "显示") }
             },
         ) { 内边距 ->
-            SelectionContainer {
-                Column(
-                    modifier = Modifier.padding(内边距)
+            选择容器 {
+                列(
+                    修饰符 = Modifier.padding(内边距)
 //                        .verticalScroll(rememberScrollState())
                 ) {
 //                    ClickToLoadLinear()
@@ -92,10 +97,10 @@ fun Home(上下文 : Activity? = LocalActivity.current) {
                         文本(文本 = "显示")
                     }
 
-                    IconButton(onClick = {}){
-                        Icon(
-                            imageVector = Icons.Filled.ArrowDropDown,
-                            contentDescription = null
+                    图标按钮(单击回调 = {}){
+                        图标(
+                            图像矢量 = Icons.Filled.ArrowDropDown,
+                            内容描述 = null
                         )
                     }
                     var 状态2 by remember { mutableStateOf(false) }
@@ -142,7 +147,7 @@ fun Home(上下文 : Activity? = LocalActivity.current) {
                     onDismissRequest = { 显示日期选择器 = false },
                     dragHandle = null
                 ) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    列(水平对齐 = Alignment.CenterHorizontally) {
                         BottomSheetDefaults.DragHandle()
                         DatePicker(
                             state = rememberDatePickerState(),

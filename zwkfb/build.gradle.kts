@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.targets.js.npm.tasks.KotlinNpmInstallTask
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -45,7 +46,7 @@ kotlin {
         binaries.executable()
     }
 
-    jvm {
+    jvm("desktop") {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
@@ -76,6 +77,8 @@ kotlin {
                 api("org.jetbrains.compose.material:material-icons-extended:1.7.3")
                 api("org.jetbrains.androidx.navigation:navigation-compose:2.9.2")
 
+//                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0-rc02")
+
             }
         }
 
@@ -90,9 +93,9 @@ kotlin {
                 api("androidx.activity:activity-compose:1.13.0")
 
                 // 本库的预览界面依赖库，
-                implementation("org.jetbrains.compose.ui:ui-tooling:1.11.0-beta03")
-                implementation("androidx.customview:customview-poolingcontainer:1.0.0")
-                implementation("androidx.emoji2:emoji2:1.5.0")
+//                implementation("org.jetbrains.compose.ui:ui-tooling:1.11.0-beta03")
+//                implementation("androidx.customview:customview-poolingcontainer:1.0.0")
+//                implementation("androidx.emoji2:emoji2:1.5.0")
             }
         }
 
@@ -104,17 +107,22 @@ kotlin {
             }
         }
 
-        jvmMain{
+//        jvmMain{
+//            dependencies {
+////                implementation(compose.desktop.currentOs)
+////                api("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.11.0-rc02")
+//            }
+//        }
+
+        val desktopMain by getting{
             dependencies {
-                implementation(compose.desktop.currentOs)
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.10.2")
+//                implementation(compose.desktop.currentOs)
+//                api("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.11.0-rc02")
             }
         }
 
         iosMain {
-            dependencies {
-
-            }
+            dependencies {}
         }
         jsMain {
             dependencies {}
@@ -130,6 +138,6 @@ kotlin {
 
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.targets.js.npm.tasks.KotlinNpmInstallTask>().configureEach {
+tasks.withType<KotlinNpmInstallTask>().configureEach {
     onlyIf { false } // 跳过 NPM 安装
 }

@@ -44,38 +44,36 @@ dependencyResolutionManagement {
 dependencies {
     
     // 如果使用多平台Jetpack Compose Multiplatform，请添加以下依赖项
-    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb:0.0.5")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb:0.0.6")
     
     // 如果使用 Android Jetpack Compose，请添加以下依赖项
-    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-android:0.0.5")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-android:0.0.6")
     
     // 如果使用 Windows Jetpack Compose，请添加以下依赖项
-    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-jvm:0.0.5")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-desktop:0.0.6")
     
     // 以下平台可以用，但目前不推荐使用
     
     // 如果使用 IOS Jetpack Compose，请添加以下依赖项
-    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-iosarm64:0.0.5")
-    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-iossimulatorarm64:0.0.5")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-iosarm64:0.0.6")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-iossimulatorarm64:0.0.6")
     
     // 如果使用 Web Jetpack Compose，请添加以下依赖项
-    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-js:0.0.5")
-    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-wasm-js:0.0.5")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-js:0.0.6")
+    implementation("com.github.dxycw.multiplatform-zwkfb:zwkfb-wasm-js:0.0.6")
     
 }
 ```
 
 **3、目前可以使用的平台：**
 
-| 平台                | 是否可用 |
-|-------------------|------|
-| Multiplatform     | ✅️   |
-| Android           | ✅️   |
-| Desktop (Windows) | ✅️   |
-| Desktop (MacOS)   | ❌️   |
-| Desktop (Linux)   | ❌️   |
-| IOS               | ❌️   |
-| Web               | ❌️   |
+| 平台            | 是否可用 |
+|---------------|------|
+| Multiplatform | ✅️   |
+| Android       | ✅️   |
+| Desktop       | ✅️   |
+| IOS           | ❌️   |
+| Web           | ❌️   |
 
 **4、使用的依赖库：**
 
@@ -87,11 +85,14 @@ dependencies {
 
 > [!CAUTION] 
 >
+>  * 项目>=0.0.6版本：
+>     从本版本开始修改 Desktop平台的依赖库 zwkfb-jvm 依赖名称为 zwkfb-desktop；
+> 
 >  * 项目>=0.0.4版本：
 >     从本版本开始 Android平台 和 Desktop平台 的 jvmTarget 修改为 JVM_11；
 > 
 >  * 项目>=0.0.2版本：
->     因为 org.jetbrains.compose 的 [1.11.0-alpha02](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.11.0-alpha02) 版本以后去掉了“x86_64”平台，所以本项目也去掉 了“x86_64”平台的依赖项，所以在项目中使用时去掉“x86_64”平台的依赖；
+>     因为 org.jetbrains.compose 的 [1.11.0-alpha02](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.11.0-alpha02) 版本以后去掉了ios的“x86_64”平台，所以本项目也去掉 了ios的“x86_64”平台的依赖项，所以在项目中使用时去掉ios的“x86_64”平台的依赖；
 >
 >     ```kotlin
 >     listOf(
@@ -105,6 +106,16 @@ dependencies {
 
 
 # 更新内容
+
+## 0.0.6
+
+* 优化 项目文档，完善使用方法、平台支持、依赖库等信息；
+* 添加 Multiplatform平台的 两个“材质主题()”、“材质表现主题()”、两个“卡片()”、两个“凸起卡片()”、两个“轮廓卡片()”、“提示条主机()” 函数组件；
+* 添加 Multiplatform平台的 “材质主题”、“卡片默认值”、“提示条结果”、“提示条持续时间” 对象类；
+* 添加 Multiplatform平台的 “卡片颜色集”、“提示条主机状态” 函数类；
+* 添加 Android平台的 “动态浅色颜色方案()”、“动态深色颜色方案()” 函数；
+* 更新 org.jetbrains.compose.hot-reload 插件版本为 1.1.0；
+* 修改 Desktop平台的依赖库 zwkfb-jvm 依赖名称为 zwkfb-desktop；
 
 ## 0.0.5
 
